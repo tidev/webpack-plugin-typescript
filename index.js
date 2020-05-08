@@ -34,8 +34,8 @@ module.exports = function (api, options) {
 		let cacheConfig;
 		if (api.hasPlugin('babel')) {
 			const { generateCacheIdentifiers, loadBabelConfig } = api.requirePeer('@titanium-sdk/webpack-plugin-babel/utils');
-			const babelConfig = loadBabelConfig(api, options);
-			const babelCacheIdentifiers = generateCacheIdentifiers(babelConfig);
+			const { options: babelOptions } = loadBabelConfig(api, options);
+			const babelCacheIdentifiers = generateCacheIdentifiers(babelOptions);
 			cacheConfig = api.generateCacheConfig(
 				'ts-loader',
 				{ ...tsCacheIdentifiers, ...babelCacheIdentifiers },
@@ -45,7 +45,7 @@ module.exports = function (api, options) {
 			tsRule.use('babel-loader')
 				.before('ts-loader')
 				.loader('babel-loader')
-				.options(babelConfig.options);
+				.options(babelOptions);
 		} else {
 			cacheConfig = api.generateCacheConfig(
 				'ts-loader',
