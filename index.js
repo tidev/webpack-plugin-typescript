@@ -1,4 +1,4 @@
-/* eslint indent: "off" */
+/* eslint indent: ["error", "tab", { "MemberExpression": "off" }] */
 
 const path = require('path');
 
@@ -13,7 +13,7 @@ module.exports = function (api, options) {
 	api.chainWebpack(config => {
 		config.resolveLoader.modules.prepend(path.join(__dirname, 'node_modules'));
 
-    // entry -------------------------------------------------------------------
+		// entry -------------------------------------------------------------------
 
 		config.entry('main')
 			.delete('./src/main.js')
@@ -43,7 +43,7 @@ module.exports = function (api, options) {
 			);
 
 			tsRule.use('babel-loader')
-				.after('cache-loader')
+				.before('ts-loader')
 				.loader('babel-loader')
 				.options(babelConfig.options);
 		} else {
@@ -65,7 +65,7 @@ module.exports = function (api, options) {
 					transpileOnly: true
 				});
 
-    // plugins -----------------------------------------------------------------
+		// plugins -----------------------------------------------------------------
 
 		const eslint = Object.keys(api.context.pkg.dependencies || {})
 			.concat(api.context.pkg.devDependencies || {})
