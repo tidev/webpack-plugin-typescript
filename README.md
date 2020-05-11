@@ -7,14 +7,14 @@
 To install this plugin in an existing project, run the following command in your project root:
 
 ```sh
-npm i -D typescript @titanium-sdk/webpack-plugin-typescript @types/titanium
+npm i -D @titanium-sdk/webpack-plugin-typescript typescript @types/titanium
 ```
 
 Since `typescript` is a peer dependency of this package, you can use the version of TypeScript that you need. All versions >=2.0 are supported.
 
-You can opt-in to use ESLint in addition to TypeScript's type checking. See the [Linting](#Linting) section for details.
+You can opt-in to use ESLint in addition to TypeScript's type checking. See the [ESLint](#eslint) section for details.
 
-This plugin can be used alongside `@titanium-sdk/webpack-plugin-babel`. When used with Babel, make sure to let TypeScript output ES2015 code and let Babel do the transpiling.
+This plugin can be used alongside `@titanium-sdk/webpack-plugin-babel`. When used with Babel, make sure to let TypeScript output ES2015 code so Babel can handle transpiling.
 
 ## Configuration
 
@@ -61,7 +61,7 @@ Create a `tsconfig.json` in the project root directory to configure TypeScript. 
 }
 ```
 
-When used with Alloy a slight adjustment of the used paths is neccessary:
+When used with [@titanium-sdk/webpack-plugin-babel](https://github.com/appcelerator/webpack-plugin-alloy) a slight adjustment of the used paths is neccessary:
 
 ```json
 {
@@ -80,13 +80,13 @@ When used with Alloy a slight adjustment of the used paths is neccessary:
 
 ### ESLint
 
-To opt-in to use ESLint for linting, simply install `eslint` and the relevant TypeScript parser and plugin.
+To opt-in to use ESLint for additional linting, simply install `eslint` and the relevant TypeScript parser and plugin.
 
 ```sh
 npm i -D eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
 ```
 
-Configuration of ESLint can be done as usual with a `.eslintrc.js` in the project root. Here is an example to get you started quickly.
+Configuration of ESLint can be done as usual with a `.eslintrc.js` in the project root. Here is an example to get you started.
 
 ```js
 const path = require('path');
