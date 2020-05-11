@@ -11,7 +11,7 @@ module.exports = function (api, options) {
 	api.watch([ 'tsconfig.json' ]);
 
 	api.chainWebpack(config => {
-		config.resolveLoader.modules.prepend(path.join(__dirname, 'node_modules'));
+		config.resolveLoader.modules.add(path.join(__dirname, 'node_modules'));
 
 		// entry -------------------------------------------------------------------
 
