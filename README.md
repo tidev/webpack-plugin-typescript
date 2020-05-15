@@ -26,7 +26,7 @@ After installing the plugin, TypeScript can be configured via `tsconfig.json`. F
 
 Create a `tsconfig.json` in the project root directory to configure TypeScript. See the following example configuration for recommended values when using TypeScript with Titanium.
 
-> 💡 **NOTE:** When used with Babel, change the `target` to `es2015` so Babel can take care of transpiling the code.
+> 💡 **NOTE:** When used with Babel, change the `target` to `es2015` so Babel can take care of transpiling your code.
 
 ```json
 {
@@ -61,16 +61,20 @@ Create a `tsconfig.json` in the project root directory to configure TypeScript. 
 }
 ```
 
-When used with [@titanium-sdk/webpack-plugin-babel](https://github.com/appcelerator/webpack-plugin-alloy) a slight adjustment of the used paths is neccessary:
+When used with [@titanium-sdk/webpack-plugin-alloy](https://github.com/appcelerator/webpack-plugin-alloy) a slight adjustment to the `tsconfig.json` is neccessary:
 
 ```json
 {
   "compilerOptions": {
     "paths": {
       "@/*": [
-        "app/lib/*"
+        "app/*"
       ]
-    }
+    },
+    "lib": [
+      "esnext",
+      "dom"
+    ]
   },
   "include": [
     "app/**/*.ts"
