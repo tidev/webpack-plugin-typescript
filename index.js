@@ -2,12 +2,9 @@
 
 const path = require('path');
 
-module.exports = function (api, options) {
-	const tsCacheIdentifiers = {
-		'ts-loader': require('ts-loader').version,
-		typescript: require('typescript').version
-	};
+const { cacheIdentifiers } = require('./utils');
 
+module.exports = function typeScriptPlugin(api, options) {
 	api.watch([ 'tsconfig.json' ]);
 
 	api.chainWebpack(config => {
@@ -15,9 +12,11 @@ module.exports = function (api, options) {
 
 		// entry -------------------------------------------------------------------
 
+		let oldEntryFile = options.type === 'alloy' ? './app/alloy.js' : './src/main.js';
+		let tsEntryFile = options.type === 'alloy' ? './app/alloy.ts' : './src/main.ts';
 		config.entry('main')
-			.delete('./src/main.js')
-			.add('./src/main.ts');
+			.delete(oldEntryFile)
+			.add(tsEntryFile);
 
 		// resolve -----------------------------------------------------------------
 
@@ -38,7 +37,7 @@ module.exports = function (api, options) {
 			const babelCacheIdentifiers = generateCacheIdentifiers(babelOptions);
 			cacheConfig = api.generateCacheConfig(
 				'ts-loader',
-				{ ...tsCacheIdentifiers, ...babelCacheIdentifiers },
+				{ ...cacheIdentifiers, ...babelCacheIdentifiers },
 				[ 'babel.config.js', 'tsconfig.json' ]
 			);
 
@@ -49,7 +48,7 @@ module.exports = function (api, options) {
 		} else {
 			cacheConfig = api.generateCacheConfig(
 				'ts-loader',
-				{ ...tsCacheIdentifiers },
+				{ ...cacheIdentifiers },
 				[ 'tsconfig.json' ]
 			);
 		}
