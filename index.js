@@ -1,5 +1,6 @@
 /* eslint indent: ["error", "tab", { "MemberExpression": "off" }] */
 
+const fs = require('fs');
 const path = require('path');
 
 const { cacheIdentifiers } = require('./utils');
@@ -8,15 +9,19 @@ module.exports = function typeScriptPlugin(api, options) {
 	api.watch([ 'tsconfig.json' ]);
 
 	api.chainWebpack(config => {
+		const isAlloy = options.type === 'alloy';
+
 		config.resolveLoader.modules.add(path.join(__dirname, 'node_modules'));
 
 		// entry -------------------------------------------------------------------
 
-		let oldEntryFile = options.type === 'alloy' ? './app/alloy.js' : './src/main.js';
-		let tsEntryFile = options.type === 'alloy' ? './app/alloy.ts' : './src/main.ts';
-		config.entry('main')
-			.delete(oldEntryFile)
-			.add(tsEntryFile);
+		let oldEntryFile = isAlloy ? './app/alloy.js' : './src/main.js';
+		let tsEntryFile = isAlloy ? './app/alloy.ts' : './src/main.ts';
+		if (fs.existsSync(tsEntryFile)) {
+			config.entry('main')
+				.delete(oldEntryFile)
+				.add(tsEntryFile);
+		}
 
 		// resolve -----------------------------------------------------------------
 
@@ -28,7 +33,10 @@ module.exports = function typeScriptPlugin(api, options) {
 
 		const tsRule = config.module
 			.rule('ts')
-				.test(/\.ts$/);
+				.test(/\.ts$/)
+				.exclude
+					.add(/node_modules/)
+					.end();
 
 		let cacheConfig;
 		if (api.hasPlugin('babel')) {
@@ -66,15 +74,28 @@ module.exports = function typeScriptPlugin(api, options) {
 
 		// plugins -----------------------------------------------------------------
 
-		const eslint = Object.keys(api.context.pkg.dependencies || {})
-			.concat(api.context.pkg.devDependencies || {})
-			.some(dep => dep === 'eslint');
+		const enableEslint = hasEslintDependencies(api.context.pkg);
+		let eslintOptions;
+		if (enableEslint) {
+			eslintOptions = {
+				files: isAlloy ? './app/**/*' : './src/**/*'
+			};
+		}
+		const tsCheckerOptions = {
+			eslint: eslintOptions
+		};
 		config.plugin('fork-ts-checker')
-			.use(require('fork-ts-checker-webpack-plugin'), [
-				{
-					eslint,
-					formatter: 'codeframe'
-				}
-			]);
+			.use(require('fork-ts-checker-webpack-plugin'), [ tsCheckerOptions ]);
 	});
 };
+
+function hasEslintDependencies(pkg) {
+	const deps = Object.keys(pkg.dependencies || {})
+		.concat(pkg.devDependencies || {});
+	const eslintPackages = [
+		'eslint',
+		'@typescript-eslint/parser',
+		'@typescript-eslint/eslint-plugin'
+	];
+	return eslintPackages.every(name => deps.some(d => d === name));
+}

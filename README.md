@@ -14,7 +14,7 @@ Since `typescript` is a peer dependency of this package, you can use the version
 
 You can opt-in to use ESLint in addition to TypeScript's type checking. See the [ESLint](#eslint) section for details.
 
-This plugin can be used alongside `@titanium-sdk/webpack-plugin-babel`. When used with Babel, make sure to let TypeScript output ES2015 code so Babel can handle transpiling.
+This plugin can be used alongside [`@titanium-sdk/webpack-plugin-babel`](https://github.com/appcelerator/webpack-plugin-babel). When used with Babel, make sure to let TypeScript output ES2015 code so Babel can handle transpiling.
 
 ## Configuration
 
@@ -26,7 +26,7 @@ After installing the plugin, TypeScript can be configured via `tsconfig.json`. F
 
 Create a `tsconfig.json` in the project root directory to configure TypeScript. See the following example configuration for recommended values when using TypeScript with Titanium.
 
-> 💡 **NOTE:** When used with Babel, change the `target` to `es2015` so Babel can take care of transpiling your code.
+> 💡 **NOTE:** When used with `@titanium-sdk/webpack-plugin-babel`, change the `target` to `es2015` so Babel can take care of transpiling your code.
 
 ```json
 {
@@ -126,4 +126,4 @@ This plugin will add/modify the following Webpack options:
 
 ### Plugins
 
-- `plugin('fork-ts-checker')` (when `eslint` is installed the `eslint` option will automatically be set to `true`)
+- `plugin('fork-ts-checker')` (when `eslint` and the TypeScript parser and plugin are installed the `eslint` option will automatically be configured)
