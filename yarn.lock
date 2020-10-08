@@ -409,9 +409,9 @@ escape-string-regexp@^1.0.5:
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
 eslint-config-axway@^4.7.1:
-  version "4.7.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-axway/-/eslint-config-axway-4.7.1.tgz#2178240cbce3a16f257029a932b06da16bab3f6b"
-  integrity sha512-WjggddGxiRrgm/s7jxiTC4peqf9tLq/LHxm/qXHijoSDqh7eIf46hNet1dcng6wF/oJxWgKaTtM5+xDta/5LSg==
+  version "4.7.3"
+  resolved "https://registry.yarnpkg.com/eslint-config-axway/-/eslint-config-axway-4.7.3.tgz#c6a3aa9362e2474a10e4278a674d91e7d3fff453"
+  integrity sha512-L/ULVxLeQUIrSx+xARrOnGg65nxPHytXQWTf20MTc0+iX7zbiyeqpGEqA+TykM8CzV9Pd9L1+rnBXvlpMWBvug==
   dependencies:
     eslint-plugin-chai-expect "^2.1.0"
     eslint-plugin-import "^2.20.2"
@@ -985,7 +985,7 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash@^4.17.14, lodash@^4.17.15:
+lodash@^4.17.14:
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
