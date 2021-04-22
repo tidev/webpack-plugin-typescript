@@ -705,9 +705,9 @@ flatted@^3.1.0:
   integrity sha512-tW+UkmtNg/jv9CSofAKvgVcO7c2URjhTdW1ZTkcAritblu8tajiYy7YisnIflEwtKssCtOxpnBRoCB7iap0/TA==
 
 fork-ts-checker-webpack-plugin@^6.0.1:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/fork-ts-checker-webpack-plugin/-/fork-ts-checker-webpack-plugin-6.0.2.tgz#3c490536b302c60cd8fc4654cffd7d15225859f4"
-  integrity sha512-3WrR/gNMcOAJ+macFpYTXxbt/xZDF9MLCYsPU3j9IUmS8LAvi8WoTiI001z1A8qkgmDtkoh6MTytTQqf8/7aOA==
+  version "6.2.4"
+  resolved "https://registry.yarnpkg.com/fork-ts-checker-webpack-plugin/-/fork-ts-checker-webpack-plugin-6.2.4.tgz#f46dc0700820476f260451518b9d545c42277aff"
+  integrity sha512-M0+lELATBqzf+tubq9PcRfJm4/wW172P7cAoCs1OpgfRICtEuJ/JUMuUm0H9JAZ57lLaN1gj38uxNktDhscYhA==
   dependencies:
     "@babel/code-frame" "^7.8.3"
     "@types/json-schema" "^7.0.5"
