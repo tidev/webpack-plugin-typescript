@@ -31,7 +31,7 @@
   "devDependencies": {
     "eslint": "^7.7.0",
     "eslint-config-axway": "^6.0.0",
-    "typescript": "~4.4.3"
+    "typescript": "~4.5.3"
   },
   "peerDependencies": {
     "typescript": ">=2.7.0"
