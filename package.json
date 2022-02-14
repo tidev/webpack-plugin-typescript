@@ -29,8 +29,8 @@
     "ts-loader": "^8.0.2"
   },
   "devDependencies": {
-    "eslint": "^7.7.0",
-    "eslint-config-axway": "^6.0.0",
+    "eslint": "^8.9.0",
+    "eslint-config-axway": "^7.0.0",
     "typescript": "~4.4.3"
   },
   "peerDependencies": {
